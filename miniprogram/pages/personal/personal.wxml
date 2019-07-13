@@ -1,0 +1,18 @@
+<!--pages/personal/personal.wxml-->
+<view class="container">
+  <view class="c-header">
+    <view class='c-header-l'>
+      <image src="{{userInfo.avatarUrl}}"></image>
+    </view>
+    <view class='c-header-r'>
+      <text>{{userInfo.nickName}}</text>
+    </view>
+  </view>
+  <view class="cell-list">
+    <van-cell-group title="">
+      <van-cell icon="phone-circle-o" size="large" title="手机号" value="134****4567" />
+      <van-cell icon="point-gift-o" link-type="navigateTo"
+  url="/pages/set/set" size="large" title="设置" is-link />
+    </van-cell-group>
+  </view>
+</view>

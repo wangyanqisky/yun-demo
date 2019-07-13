@@ -1,0 +1,10 @@
+<!--pages/login/login.wxml-->
+<button 
+  type="primary" 
+  size="default" 
+  open-type="getUserInfo"
+  bindgetuserinfo="onGotUserInfo"
+>
+  登录授权
+</button>
+<van-notify id="login-tips" />

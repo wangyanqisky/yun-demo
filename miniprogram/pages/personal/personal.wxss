@@ -1,0 +1,31 @@
+/* pages/personal/personal.wxss */
+
+.c-header{
+  height: 200rpx;
+  width: 100%;
+  background-color: #4098f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 50rpx;
+}
+
+.c-header .c-header-l{
+  flex: 1;
+  text-align: center;
+}
+
+image{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;vertical-align: middle;
+}
+
+.c-header .c-header-r{
+  flex: 3;
+  color: #fff;
+}
+
+.cell-list{
+  width: 100%;
+}
