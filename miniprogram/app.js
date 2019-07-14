@@ -12,7 +12,15 @@ App({
       })
     }
 
-    // 查看是否授权
+    this.checkAuth();
+  },
+
+  onShow: function () {
+    this.checkAuth();
+  },
+
+  // 查看是否授权
+  checkAuth: function () {
     wx.getSetting({
       success(settingRes) {
         // 已经授权
@@ -37,14 +45,15 @@ App({
           })
         } else {
           wx.reLaunch({
-            url: `/pages/login/login?back=${options.path.split('/')[1]}`
+            url: "/pages/login/login"
           })
         }
       }
     })
-
   },
+
   globalData: {
-    userInfo: {}
+    userInfo: {},
+    isHomePageUpdate: false
   }
 })

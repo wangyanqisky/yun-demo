@@ -1,0 +1,10 @@
+<!--pages/detail/detail.wxml-->
+<view class="detail">
+  <view class="title-date">
+    <view class="title-date-t">{{ detail.title }}</view>
+    <view class="title-date-d">{{ detail.date }}</view>
+  </view>
+  <view class="content">
+    <text>{{ detail.content }}</text>
+  </view>
+</view>

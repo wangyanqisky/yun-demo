@@ -1,18 +1,23 @@
 <!--pages/home/home.wxml-->
 <view class="home">
-  <view wx:for="{{ todoList }}" wx:key="{{index}}" class='home-c'>
-    <view class="home-c-litem">
-      <view class="home-c-litem-top">
-        <view class="home-c-litem-title">{{item.title}} </view>
-        <view class="home-c-litem-date">{{item.date}} </view>
-      </view>
-      <view>
-        <text class="home-c-litem-content">{{item.content}}</text>
-      </view>
-    </view>
-    <view  class="home-c-ritem">
-      <!-- <text bindtap="goToDetail" data-todoid="{{item._id}}">编辑</text> -->
-      <van-icon name="arrow" class='arrow'/>
+  <view wx:if="{{ todoList.length > 0 }}">
+    <view wx:for="{{ todoList }}" wx:key="{{index}}" class='home-c'>
+      <van-swipe-cell class="swipe-cell" data-itemid="{{ item._id }}" right-width="{{ 80 }}" left-width="{{ 0.1 }}" async-close bind:close="onDeletItem">
+        <navigator url="../detail/detail?id={{item._id}}">
+          <view class="home-c-litem">
+            <view class="home-c-litem-title">{{item.title}} </view>
+            <view class="home-c-litem-date">{{item.date}} </view>
+          </view>
+          <view class="home-c-ritem">
+            <van-icon name="arrow" class='arrow' />
+          </view>
+        </navigator>
+        <view class="right-label" slot="right">删除</view>
+      </van-swipe-cell>
     </view>
   </view>
+  <view class="empty" wx:else>
+    <text>暂无数据</text>
+  </view>
+  <van-dialog id="van-dialog" />
 </view>

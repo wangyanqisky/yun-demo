@@ -15,33 +15,14 @@
       label="内容"
       type="textarea"
       size="large"
-      placeholder="请输入内容"
+      placeholder="请输入内容，支持多行"
       autosize
       required
       bind:input="onContentChange"
-    />
-    <van-field
-      value="{{ date }}"
-      label="日期"
-      required
-      disabled
-      placeholder="请选择日期"
-      border="{{ false }}"
-      icon="arrow"
-      bindtap="onHandleDate"
     />
   </van-cell-group>
   <view class='submit'>
     <van-button class="submit-btn" bindtap="onSubmit">发布</van-button>
   </view>
   <van-toast id="van-toast" />
-  <van-popup show="{{ showPopup }}" position="bottom" bind:close ="onClosePopup" >
-    <van-datetime-picker
-      type="date"
-      value="{{ currentDate }}"
-      formatter="{{ formatter }}"
-      bind:confirm="onDateConfirm"
-      bind:cancel="onDateCancel"
-    />
-  </van-popup>
 </view>

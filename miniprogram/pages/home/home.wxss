@@ -1,25 +1,43 @@
 /* pages/home/home.wxss */
+.home {
+  padding-bottom:30px;
+}
+
 .home-c{
   display: flex;
   background: #fff;
-  padding: 10px 15px;
+  /* padding: 10px 15px; */
   font-size: 28rpx;
   margin: 30rpx 30rpx;
 }
 
-.home-c-litem{
-  flex: 5;
+navigator {
+  width:100%;
+  display:flex;
 }
 
-.home-c-litem-top{
-  padding-bottom: 5px;
-  margin-bottom: 10px;
-  border-bottom: 1px solid #dcdcdc;
+.swipe-cell {
+  width:100%;
+}
+
+.right-label {
+  text-align: center;
+  background: #eb544d;
+  width: 80px;
+  height: 100%;
+  color: #fff;
+  line-height: 64px;
+}
+
+.home-c-litem{
+  flex: 5;
+  padding: 10px 10px 10px;
 }
 
 .home-c-litem-title {
   font-size: 30rpx;
   color: #333;
+  margin-bottom: 5px;
 }
 
 .home-c-litem-date {
@@ -27,17 +45,19 @@
   color: #999;
 }
 
-.home-c-litem-content{
-  color: #666;
-  font-size: 26rpx;
-}
-
 .home-c-ritem{
   flex: 1;
   align-self: center;
   text-align: right;
+  padding-right: 10px;
 }
 
 .arrow{
   vertical-align: middle;
+}
+
+.empty{
+  text-align: center;
+  margin-top: 40%;
+  color: #666;
 }

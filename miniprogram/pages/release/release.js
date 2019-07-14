@@ -1,18 +1,19 @@
 // pages/release/release.js
 import Toast from 'vant-weapp/toast/toast';
 const db = wx.cloud.database(); // 初始化数据库
+const app = getApp();
 
 Page({
 
   formatDate: function (time) {
-    var now = new Date(time);
-    var   year = now.getFullYear();
-    var   month = now.getMonth() + 1;
-    var   date = now.getDate();
-    var   hour = now.getHours();
-    var   minute = now.getMinutes();
-    var   second = now.getSeconds();
-    return   year + "-" + month + "-" + date;
+    const now = new Date(time);
+    const year = now.getFullYear();
+    const month = now.getMonth() + 1;
+    const date = now.getDate();
+    const hour = now.getHours();
+    const minute = now.getMinutes() < 10 ? `0${now.getMinutes()}` : now.getMinutes();
+    const second = now.getSeconds();
+    return `${year}-${month}-${date} ${hour}:${minute}:${second}`;
   },
 
   /**
@@ -20,27 +21,14 @@ Page({
    */
   data: {
     content: "",
-    title: "",
-    date: "",
-    currentDate: new Date().getTime(),
-    formatter(type, value) {
-      if (type === 'year') {
-        return `${value}年`;
-      } else if (type === 'month') {
-        return `${value}月`;
-      }
-      return value;
-    },
-    showPopup: false,
+    title: ""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      date: this.formatDate(new Date().getTime())
-    })
+    
   },
 
   /**
@@ -81,32 +69,9 @@ Page({
     });
   },
 
-  /**
-   * 时间取消回调
-   */
-  onDateCancel: function (event) {
-    this.setData({
-      showPopup: false
-    });
-  },
-
-  /**
-   * 时间输入框选择回调
-   */
-  onHandleDate: function (event) {
-    this.setData({
-      showPopup: true
-    });
-  },
-
-  onClosePopup: function (event) {
-    this.setData({
-      showPopup: false
-    });
-  },
-
   onSubmit: function (event) {
-    const { content, title, date} = this.data;
+    const { content, title} = this.data;
+    const currentDate = new Date().getTime();
     if (!content || !title) {
       Toast('请输入');
       return;
@@ -119,7 +84,7 @@ Page({
       data: {
         title,
         content,
-        date,
+        date: this.formatDate(currentDate)
       }
     }).then(res => {
       this.setData({
@@ -128,6 +93,7 @@ Page({
       })
       wx.hideLoading();
       Toast('发布成功');
+      app.globalData.isHomePageUpdate = true;
       wx.switchTab({
         url: "/pages/home/home"
       })

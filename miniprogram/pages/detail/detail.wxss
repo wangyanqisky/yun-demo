@@ -1,0 +1,28 @@
+/* pages/detail/detail.wxss */
+.detail {
+  margin: 30rpx 30rpx;
+}
+
+.title-date {
+  background: #fff;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.title-date-t {
+  color: #333;
+  font-size: 30rpx;
+  margin-bottom: 10rpx;
+}
+
+.title-date-d {
+  color: #999;
+  font-size: 26rpx;
+}
+
+.content {
+  background: #fff;
+  padding: 10px;
+  color: #666;
+  font-size: 28rpx;
+}

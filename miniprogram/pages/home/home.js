@@ -1,5 +1,7 @@
 // pages/home/home.js
+import Dialog from 'vant-weapp/dialog/dialog';
 const db = wx.cloud.database(); // 初始化数据库
+const app = getApp();
 
 Page({
 
@@ -34,28 +36,53 @@ Page({
     })
     db.collection('todoList')
       .where({})
-      .orderBy('_id', 'desc')
+      .orderBy('date', 'desc')
       .get()
       .then(res => {
-      this.setData({
-        todoList: res.data
+        this.setData({
+          todoList: res.data
+        })
+        wx.hideLoading();
+        callback && callback();
+      }).catch(err => {
+        wx.hideLoading();
       })
-      wx.hideLoading();
-      callback && callback();
-    }).catch(err => {
-      wx.hideLoading();
-    })
   },
 
-  goToDetail: function (event) {
-    console.log(event.target.dataset.todoid)
+  onDeletItem: function (event) {
+    const { position, instance } = event.detail;
+    const id = event.target.dataset.itemid;
+    switch (position) {
+      case 'left':
+      case 'cell':
+        instance.close();
+        break;
+      case 'right':
+        Dialog.confirm({
+          message: '确定删除吗？'
+        }).then(() => {
+          db.collection('todoList')
+          .doc(id).remove()
+          .then(res => {
+            wx.startPullDownRefresh();
+            instance.close();
+          })
+          .catch(err => {
+            console.error(err)
+          })
+        });
+        break;
+    }
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    wx.startPullDownRefresh();
+  onShow: function (options) {
+    if (app.globalData.isHomePageUpdate) {
+      wx.startPullDownRefresh();
+      app.globalData.isHomePageUpdate = false;
+    }
   },
 
   /**

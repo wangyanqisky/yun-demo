@@ -4,9 +4,7 @@
     "van-cell": "vant-weapp/cell",
     "van-field": "vant-weapp/field",
     "van-cell-group": "vant-weapp/cell-group",
-    "van-toast": "vant-weapp/toast",
-    "van-datetime-picker": "vant-weapp/datetime-picker",
-    "van-popup": "vant-weapp/popup"
+    "van-toast": "vant-weapp/toast"
   },
   "navigationBarTitleText": "发布"
 }
