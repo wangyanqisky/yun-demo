@@ -1,2 +1,4 @@
 <!--pages/set/set.wxml-->
-<text>暂无信息</text>
+<view>
+  <view class='text'>敬请期待...</view>
+</view>

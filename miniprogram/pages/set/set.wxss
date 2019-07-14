@@ -1,1 +1,5 @@
 /* pages/set/set.wxss */
+.text{
+  text-align: center;
+  margin-top: 40%;
+}

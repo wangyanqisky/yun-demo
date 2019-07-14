@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "van-icon": "vant-weapp/icon"
+  },
+  "navigationBarTitleText": "首页",
+  "enablePullDownRefresh": true
+}

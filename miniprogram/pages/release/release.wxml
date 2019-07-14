@@ -1,0 +1,47 @@
+<!--pages/release/release.wxml-->
+<view>
+  <van-cell-group>
+    <van-field
+      value="{{ title }}"
+      type="text"
+      label="标题"
+      size="large"
+      placeholder="请输入标题"
+      required
+      bind:input="onTitleChange"
+    />
+    <van-field
+      value="{{ content }}"
+      label="内容"
+      type="textarea"
+      size="large"
+      placeholder="请输入内容"
+      autosize
+      required
+      bind:input="onContentChange"
+    />
+    <van-field
+      value="{{ date }}"
+      label="日期"
+      required
+      disabled
+      placeholder="请选择日期"
+      border="{{ false }}"
+      icon="arrow"
+      bindtap="onHandleDate"
+    />
+  </van-cell-group>
+  <view class='submit'>
+    <van-button class="submit-btn" bindtap="onSubmit">发布</van-button>
+  </view>
+  <van-toast id="van-toast" />
+  <van-popup show="{{ showPopup }}" position="bottom" bind:close ="onClosePopup" >
+    <van-datetime-picker
+      type="date"
+      value="{{ currentDate }}"
+      formatter="{{ formatter }}"
+      bind:confirm="onDateConfirm"
+      bind:cancel="onDateCancel"
+    />
+  </van-popup>
+</view>

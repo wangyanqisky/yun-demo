@@ -1,6 +1,5 @@
-// pages/login/login.js
-import Notify from 'vant-weapp/notify/notify';
-const app = getApp();
+// pages/home/home.js
+const db = wx.cloud.database(); // 初始化数据库
 
 Page({
 
@@ -8,20 +7,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    backPath: ''
+    todoList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (options.hasOwnProperty("back")) {
-      this.setData({
-        backPath: options.back
-      })
-    }
-    console.log(options)
+    this.getTodoList();
   },
 
   /**
@@ -31,30 +24,38 @@ Page({
 
   },
 
-  onGotUserInfo: function (event) {
-    const { backPath } = this.data;
-    if (event.detail.errMsg === 'getUserInfo:ok') {
-      const userInfo = event.detail.userInfo
-      app.globalData.userInfo = userInfo
-      wx.switchTab({
-        url: "/pages/home/home"
+  /**
+   * 获取列表
+   */
+  getTodoList: function (callback) {
+    const { todoList } = this.data;
+    wx.showLoading({
+      title: '加载中...',
+    })
+    db.collection('todoList')
+      .where({})
+      .orderBy('_id', 'desc')
+      .get()
+      .then(res => {
+      this.setData({
+        todoList: res.data
       })
-    } else {
-      // 加入提示
-      Notify({
-        text: "需要获取基本信息，请再次点击登录",
-        duration: 1500,
-        selector: '#login-tips',
-        backgroundColor: '#dc3545'
-      });
-    }
+      wx.hideLoading();
+      callback && callback();
+    }).catch(err => {
+      wx.hideLoading();
+    })
+  },
+
+  goToDetail: function (event) {
+    console.log(event.target.dataset.todoid)
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    wx.startPullDownRefresh();
   },
 
   /**
@@ -75,7 +76,9 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.getTodoList(function () {
+      wx.stopPullDownRefresh();
+    });
   },
 
   /**

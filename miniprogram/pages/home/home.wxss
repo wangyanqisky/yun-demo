@@ -1,0 +1,43 @@
+/* pages/home/home.wxss */
+.home-c{
+  display: flex;
+  background: #fff;
+  padding: 10px 15px;
+  font-size: 28rpx;
+  margin: 30rpx 30rpx;
+}
+
+.home-c-litem{
+  flex: 5;
+}
+
+.home-c-litem-top{
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #dcdcdc;
+}
+
+.home-c-litem-title {
+  font-size: 30rpx;
+  color: #333;
+}
+
+.home-c-litem-date {
+  font-size: 26rpx;
+  color: #999;
+}
+
+.home-c-litem-content{
+  color: #666;
+  font-size: 26rpx;
+}
+
+.home-c-ritem{
+  flex: 1;
+  align-self: center;
+  text-align: right;
+}
+
+.arrow{
+  vertical-align: middle;
+}
